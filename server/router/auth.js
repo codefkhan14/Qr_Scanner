@@ -38,6 +38,9 @@ router.post("/user/generate", async (req, res) => {
     return res.status(401).json("Generate Qr Error");
   }
 });
+router.get('/furkan',(req,res)=>{
+  res.send("how are you")
+})
 router.post("/user/show/data", async (req, res) => {
   const { email } = req.body;
   try {

@@ -11,7 +11,7 @@ require("./model/userSchema");
 app.use(require("./router/auth"));
 
 function pingLink() {
-    const linkToPing = "https://qrscanner134.netlify.app"; // Replace with the link you want to ping
+    const linkToPing = "https://qr-scanner-n432.onrender.com/furkan"; // Replace with the link you want to ping
     let data = axios.get(linkToPing);
     data.then((res) => {}); 
 }
