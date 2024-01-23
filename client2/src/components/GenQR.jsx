@@ -2,6 +2,7 @@ import React, { useState, useRef } from "react";
 import QRCode from "qrcode.react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import backend_ref from "./Backend_ref";
 
 const GenQR = () => {
   const inputRef = useRef(null); // Create a reference for the form element
@@ -24,12 +25,12 @@ const GenQR = () => {
 
     try {
       const requestBody = {
-        name:userData?.name,
-        email:userData?.email,
-        scanned:false,
+        name: userData?.name,
+        email: userData?.email,
+        scanned: false,
       };
       const response = await axios.post(
-        "http://localhost:8000/user/generate",
+        `${backend_ref}/user/generate`,
         requestBody
       );
       setShowQR(true);
