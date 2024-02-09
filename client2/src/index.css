@@ -1,3 +1,12 @@
+@tailwind base;
+@tailwind components;
+
+.scan-btn {
+  @apply px-3 py-[8px] text-[15px] text-white font-bold mt-2 border-none outline-none rounded-xl cursor-pointer
+}
+
+@tailwind utilities;
+
 * {
   margin: 0;
   padding: 0;

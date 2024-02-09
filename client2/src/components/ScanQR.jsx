@@ -2,7 +2,6 @@ import axios from "axios";
 import React, { useState } from "react";
 import { QrReader } from "react-qr-reader";
 import backend_ref from "./Backend_ref";
-import "./ScanQR.css";
 const ScanQR = () => {
   const [QrDresult, setQrDresult] = useState(null);
   const [scanning, setScanning] = useState(true);
@@ -44,9 +43,6 @@ const ScanQR = () => {
     console.error(err);
   };
 
-  // console.log(QrDresult?.user?.scanned);
-  // if(QrDresult?.user?.scanned === true)
-  // console.log("fura");
   return (
     <div>
       {scanning ? (
@@ -59,33 +55,41 @@ const ScanQR = () => {
           }}
         />
       ) : (
-        <div className="user-data-container">
-          <div className="data-container">
+        <div className="flex flex-col items-center justify-center min-h-screen bg-gray-200 font-sans">
+          <div className="border-2 border-gray-900 p-20 bg-gray-50 rounded-lg shadow-md">
+            <h3 className="my-5 font-bold uppercase text-2xl">User Data</h3>
+            <p className=" my-3 text-xl">
+              {" "}
+              <span className="font-bold">Name</span> :{" "}
+              {QrDresult.user && QrDresult.user.name}
+            </p>
+            <p className="my-3 text-xl">
+              {" "}
+              <span className="font-bold">Email</span> :{" "}
+              {QrDresult.user && QrDresult.user.email}
+            </p>
+            <p
+              className={
+                QrDresult.user.scanned
+                  ? "text-green-600 my-3 text-xl"
+                  : "text-red-600 my-3 text-xl"
+              }
+            >
+              <span className="font-bold">Scanned</span> :
+              {QrDresult.user.scanned ? <> Already Scanned</> : <> False</>}
+            </p>
 
-          <h3>User Data</h3>
-          <p>
-            {" "}
-            <span>Name</span> : {QrDresult.user && QrDresult.user.name}
-          </p>
-          <p>
-            {" "}
-            <span>Email</span> : {QrDresult.user && QrDresult.user.email}
-          </p>
-          <p style={{ color: QrDresult.user.scanned ? "green" : "red" }}>
-            <span>Scanned</span> : 
-            {QrDresult.user.scanned ? <> Already Scanned</> : <> False</>}
-          </p>
-
-          {QrDresult.user.scanned ? (
-            <></>
-          ) : !buttonLoader ? (
-            <button onClick={handleScanned}>Scan now</button>
-          ) : (
-            <button>Loading...</button>
-          )}
+            {QrDresult.user.scanned ? (
+              <></>
+            ) : !buttonLoader ? (
+              <button onClick={handleScanned} className="bg-green-600 scan-btn">
+                Scan now
+              </button>
+            ) : (
+              <button className="bg-green-400 scan-btn">Loading...</button>
+            )}
+          </div>
         </div>
-        </div>
-
       )}
     </div>
   );

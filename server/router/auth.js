@@ -1,8 +1,5 @@
 const express = require("express");
 const router = express.Router();
-// const cookieParser = require("cookie-parser");
-// const app = express();
-
 const multer = require("multer");
 const csv = require("csvtojson");
 
@@ -38,9 +35,9 @@ router.post("/user/generate", async (req, res) => {
     return res.status(401).json("Generate Qr Error");
   }
 });
-router.get('/furkan',(req,res)=>{
-  res.send("how are you")
-})
+router.get("/furkan", (req, res) => {
+  res.send("how are you");
+});
 router.post("/user/show/data", async (req, res) => {
   const { email } = req.body;
   try {
@@ -85,18 +82,6 @@ router.post("/user/scanned/success", async (req, res) => {
     return res.status(500).json({ error: "Server Error" });
   }
 });
-
-
-
-
-
-
-
-
-
-
-
-
 
 // store data csv to mongodb
 
